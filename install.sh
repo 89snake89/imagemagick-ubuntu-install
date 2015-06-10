@@ -14,28 +14,62 @@ set -e
 # sudo ./install.sh
 #
 
-echo "
-#
-# ImageMagick install bash script
-#
-"
+echo_help() {
+    echo "
+Usage:
 
-while true; do
-    read -p "The next steps could take some time and and active internet connection is required, continue? (y/n) " yn
-    case $yn in
-        [Yy]* ) echo "contnue.."; break;;
-        [Nn]* ) exit;;
-        * ) echo "Please answer yes [Yy] or no [Nn].";;
-    esac
-done
+./install.sh [-y|--yes] [-h|--help]
+
+Options:
+
+* -y or --yes  : don't ask confirmation
+* -h or --help : print this help
+"
+}
 
 SRC_DIR=/usr/local/src
+YES=false
+ARGS=[]
 
 IM=ImageMagick
 IM_VERSION=6.9.1-4
 IM_TAR_URL=http://www.imagemagick.org/download/${IM}.tar.gz
 IM_TAR=${SRC_DIR}/${IM}.tar.gz
 IM_UNTAR_DIR=${SRC_DIR}/${IM}-${IM_VERSION}
+
+#
+# PARSE OPTIONS AND ARGUMENTS
+#
+for i in "$@"
+do
+case $i in
+    -y|--yes)
+    YES=true
+    shift # past argument=value
+    ;;
+    -h|--help)
+    echo_help; shift; exit 0;
+    break;;
+    *)
+    if ! [[ ${i} =~ ^--* ]]; then
+        ARGS+=(${i})
+    else
+        echo_help; echo "Unknown option '${i}'"; exit 1;
+    fi;
+    ;;
+esac
+done
+
+if [ ${YES} != true ]; then
+    while true; do
+        read -p "The next steps could take some time and and active internet connection is required, continue? (y/n) " yn
+        case $yn in
+            [Yy]* ) echo "contnue.."; break;;
+            [Nn]* ) exit;;
+            * ) echo "Please answer yes [Yy] or no [Nn].";;
+        esac
+    done
+fi
 
 # install deps with apt-get
 sudo apt-get install wget -y;

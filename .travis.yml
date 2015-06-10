@@ -3,4 +3,4 @@ language: bash
 sudo: true
 
 script:
-  - sudo ./install.sh
+  - sudo ./install.sh -y
