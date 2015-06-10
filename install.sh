@@ -36,7 +36,7 @@ IM_VERSION=6.9.1-4
 IM_TAR_URL=http://www.imagemagick.org/download/${IM}.tar.gz
 IM_TAR=${SRC_DIR}/${IM}.tar.gz
 IM_UNTAR_DIR=${SRC_DIR}/${IM}-${IM_VERSION}
-
+IM_CONVERT_BIN=/usr/local/bin/convert
 #
 # PARSE OPTIONS AND ARGUMENTS
 #
@@ -72,6 +72,7 @@ if [ ${YES} != true ]; then
 fi
 
 # install deps with apt-get
+sudo apt-get update;
 sudo apt-get install wget -y;
 sudo apt-get install ghostscript -y;
 sudo apt-get install libgs-dev -y;
@@ -95,8 +96,17 @@ sudo make && sudo make install
 # return in the current folder
 cd - 1> /dev/null
 
+# HOTFIX? https://gist.github.com/wacko/39ab8c47cbcc0c69ecfb
+#
+# if you get this error when /usr/local/bin/convert:
+#   convert: error while loading shared libraries: libMagickCore-6.Q16.so.2: cannot open shared object file: No such file or directory
+# run this command:
+#   sudo ldconfig /usr/local/lib
+#
+sudo ldconfig /usr/local/lib
+
 # convert version
-/usr/local/bin/convert --version
+${IM_CONVERT_BIN} --version
 
 echo "DONE!"
 exit 0

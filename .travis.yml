@@ -2,5 +2,9 @@ language: bash
 
 sudo: true
 
+before_script:
+  - cat /etc/*-release # print some info about current linux distribution
+
+
 script:
   - sudo ./install.sh -y
