@@ -1,0 +1,6 @@
+# NOTES
+
+* **[HOW TO INSTALL IMAGEMAGICK GIST]**
+
+
+[HOW TO INSTALL IMAGEMAGICK GIST]: https://gist.github.com/leomelzer/3949356
