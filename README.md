@@ -3,9 +3,7 @@
 Compile and install ImageMagick with Ghostscripts libs from source.
 Source is downloaded and unzipped at /usr/local/src.
 
-Tested on:
-    * Linux Ubuntu 14.04.2 Trusty LTS 
-    * Travis-CI [![Build Status](https://travis-ci.org/rbarilani/imagemagick-ubuntu-install.svg)](https://travis-ci.org/rbarilani/imagemagick-ubuntu-install)
+[![Build Status](https://travis-ci.org/rbarilani/imagemagick-ubuntu-install.svg)](https://travis-ci.org/rbarilani/imagemagick-ubuntu-install)
 
 ## Usage:
 
