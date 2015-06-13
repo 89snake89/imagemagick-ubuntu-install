@@ -62,9 +62,9 @@ done
 
 if [ ${YES} != true ]; then
     while true; do
-        read -p "The next steps could take some time and and active internet connection is required, continue? (y/n) " yn
+        read -p "The next steps could take some time and an active internet connection is required, continue? (y/n) " yn
         case $yn in
-            [Yy]* ) echo "contnue.."; break;;
+            [Yy]* ) echo "continue.."; break;;
             [Nn]* ) exit;;
             * ) echo "Please answer yes [Yy] or no [Nn].";;
         esac
